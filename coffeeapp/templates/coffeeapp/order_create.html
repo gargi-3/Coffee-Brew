@@ -1,0 +1,75 @@
+{% extends "coffeeapp/base.html" %}
+{% block title %}Checkout Form{% endblock %}
+{% block content %}
+<style>
+    .checkout-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #f7f7f7;
+        border-radius: 10px;
+        box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        font-family: "Jost", sans-serif;
+        font-size: 1.9rem;
+        color: #363d43;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        font-family: "Jost", sans-serif;
+        font-size: 1rem;
+        color: #333;
+        margin-bottom: 5px;
+        width: 100%;
+    }
+
+    input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+        width: 100%;
+        padding: 7px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+
+    .btn-submit {
+        font-family: "Teko", sans-serif;
+        font-weight: 600;
+        background-color: rgb(45, 37, 3);
+        border: none;
+        font-size: 1rem;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 3px;
+        color: whitesmoke;
+        transition: background-color 0.3s ease;
+        width: 100%;
+    }
+
+    .btn-submit:hover {
+        background-color: rgba(45, 37, 3, 0.475);
+        color: whitesmoke;
+        border: none;
+        transition: all 0.15s ease-in-out;
+        transform: scale(0.95, 0.95);
+    }
+</style>
+
+<div class="checkout-container">
+    <h2>Checkout</h2>
+    <form method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn-submit">Place Order</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "coffeeapp/base.html" %}
+{% block title %} Register {% endblock %}
+{% block content %}
+<style>
+    .register-container {
+        max-width: 500px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #f7f7f7;
+        border-radius: 10px;
+        box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        font-family: "Jost", sans-serif;
+        font-size: 1.9rem;
+        color: #363d43;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        font-family: "Jost", sans-serif;
+        font-size: 1rem;
+        color: #333;
+        margin-bottom: 5px;
+        width: 100%;
+    }
+
+    input[type="text"], input[type="password"], input[type="email"], select, textarea {
+        width: 100%;
+        padding: 7px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    .btn-primary {
+        background-color: rgb(45, 37, 3);
+        border: none;
+        font-size: 1rem;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 3px;
+        transition: background-color 0.3s ease;
+        width: 100%;
+    }
+
+    .btn-primary:hover {
+        background-color: rgba(45, 37, 3, 0.475);
+        color: #fff;
+    }
+
+    .login-link {
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    .login-link a {
+        font-family: "Jost", sans-serif;
+        font-size: 0.9rem;
+        color: #363d43;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .login-link a:hover {
+        color: rgb(45, 37, 3);
+        text-decoration: underline;
+    }
+</style>
+
+<div class="register-container">
+    <h2>Register</h2>
+    <form method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+    <div class="login-link">
+        <a href="{% url 'login' %}">Already have an account? Login here</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,96 @@
+{% extends "coffeeapp/base.html" %}
+{% block title %}Order Created{% endblock %}
+{% block content %}
+<style>
+    .order-container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #f7f7f7;
+        border-radius: 10px;
+        box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    h2 {
+        font-family: "Jost", sans-serif;
+        font-size: 1.9rem;
+        color: #363d43;
+        margin-bottom: 20px;
+    }
+
+    p {
+        font-family: "Lato", sans-serif;
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    .btn-pay {
+        font-family: "Teko", sans-serif;
+        font-weight: 600;
+        background-color: rgb(255, 217, 0);
+        border: none;
+        font-size: 1rem;
+        padding: 10px 20px;
+        border-radius: 3px;
+        color: #363d43;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-pay:hover {
+        background-color: rgba(233, 229, 186, 0.705);
+        color: #363d43;
+        transition: all 0.15s ease-in-out;
+        transform: scale(0.95, 0.95);
+    }
+
+    .btn-shop {
+        font-family: "Teko", sans-serif;
+        font-weight: 600;
+        display: inline-block;
+        margin-top: 10px;
+        padding: 10px 20px;
+        background-color: rgb(45, 37, 3);
+        color: whitesmoke;
+        text-align: center;
+        border: none;
+        border-radius: 3px;
+        text-decoration: none;
+        font-size: 1.2rem;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-shop:hover {
+        background-color: rgba(45, 37, 3, 0.475);
+        color: whitesmoke;
+        border: none;
+        text-decoration: none;
+        transform: translateY(-2px);
+    }
+</style>
+
+<div class="order-container">
+    <h2>Thank you for purchasing!</h2>
+    <p>Your order has been successfully placed. Your order id: {{ order.id }}</p>
+    <p><button id="rzp-button" class="btn-pay">Pay With RazorPay</button></p>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        document.getElementById('rzp-button').onclick = function(e){
+            var options = {
+                key: "{{ razorpay_key_id }}",
+                amount: "{{ payment.amount }}",
+                currency: "INR",
+                order_id: "{{ payment.id }}",
+                name: "Coffee Brew",
+                description: "{{ order.id }}",
+                prefill: { name: "{{ order.first_name }}" },
+            };
+            var rzp = new Razorpay(options);
+            rzp.open();
+        }
+    </script>
+    <a href="{% url 'coffee_list' %}" class="btn-shop">Continue Shopping</a>
+</div>
+{% endblock %}

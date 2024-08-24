@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+.search-result{
+    color: white; 
+    font-family: "Jost",sans-serif; 
+    font-weight: bold;
+}
+
+.cf-heading{
+    color: white; 
+    font-family: "Teko",sans-serif;
+}
+
+.list-group-item {
+    color: black; 
+    border-radius: 0.25rem; 
+    transition: background-color 0.3s ease;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+}
+
+.badge{
+    background-color: rgb(255, 217, 0); 
+    color: rgba(0, 0, 0, 0.637); 
+    font-weight: bold;
+}
+</style>
+<div class="container mt-4">
+    <h2 class="search-result text-center mb-4">Search Results for "{{ query }}"</h2>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h3 class="cf-heading text">Coffees</h3>
+            {% if coffee_results %}
+                <ul class="list-group mb-4">
+                    {% for result in coffee_results %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="{% url 'coffee_detail' result.id %}" class="text-decoration-none" style="color: black;">{{ result.name }}</a>
+                            <span class="badge badge-pill">View Details</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text" style="color: whitesmoke;">No coffee results found.</p>
+            {% endif %}
+        </div>
+    
+        <div class="col-md-6">
+            <h3 class="cf-heading text">Foods</h3>
+            {% if food_results %}
+                <ul class="list-group">
+                    {% for result in food_results %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="{% url 'food_detail' result.id %}" class="text-decoration-none" style="color: black;">{{ result.name }}</a>
+                            <span class="badge badge-pill">View Details</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text" style="color: whitesmoke;">No food results found.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

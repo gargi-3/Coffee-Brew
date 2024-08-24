@@ -1,0 +1,221 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Coffee Brew</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Courgette&family=Grey+Qo&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Teko:wght@300..700&family=Timmana&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/d077a9e24f.js" crossorigin="anonymous"></script>
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                background: url("{% static 'coffeeapp/background.jpg' %}") no-repeat center fixed;
+                background-size: cover;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+
+            header {
+                background: rgba(51, 55, 59, 0.9);
+            }
+            
+            header .navbar-nav .nav-item .nav-link {
+                color: rgba(233, 229, 186, 0.659);
+            }
+
+            header .navbar-nav .nav-item .nav-link:hover { 
+                color: #7d5e09c7;
+            }
+
+            main {
+                flex: 1;
+                margin-top: 20px;
+            }
+            
+            footer {
+                background: rgba(51, 55, 59, 0.9);
+                color: whitesmoke;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 5rem;
+                flex-wrap: wrap;
+            }
+
+            footer .media-icons {
+                display: flex;
+                gap: 2rem;
+            }
+
+            footer .media-icons a {
+                color: whitesmoke;
+                font-size: large;
+            }
+
+            footer .media-icons a .fa-linkedin:hover {
+                color: rgb(43, 105, 221);
+                transition: all 0.3s ease-in-out;
+            }
+
+            footer .media-icons a .fa-github:hover {
+                color: #333333cc;
+                transition: all 0.3s ease-in-out;
+            }
+            
+            .navbar .navbar-brand {
+                color: #1f1503;
+                font-family: "Jost", sans-serif;
+                font-weight: 900;
+                font-size: x-large;
+                margin-right: 2rem;
+            }
+
+            .navbar .navbar-brand:hover {
+                color: #312506d3;
+            }
+            
+            .welcome-section {
+                font-family: "Timmana", sans-serif;
+                text-align: center;
+                margin-top: 20%;
+            }
+
+            .welcome-section h1 {
+                font-style: italic;
+                color: whitesmoke;
+                font-size: 3rem;
+                margin-bottom: 20px;
+            }
+
+            .welcome-section .btn {
+                font-family: "Teko", sans-serif;
+                font-size: 1.2rem;
+                font-weight: bold;
+                margin: 10px;
+                padding: 7px 20px;
+                border-radius: 30px;
+                background-color: rgb(255, 217, 0);
+                color: rgba(0, 0, 0, 0.637);
+                border: 2px solid whitesmoke;
+            }
+
+            .welcome-section .btn:hover {
+                background-color: rgba(233, 229, 186, 0.705);
+                transition: all 0.3s ease-in-out;
+            }
+
+            .btn {
+                font-family: "Teko", sans-serif;
+                font-weight: 600;
+                background-color: rgb(45, 37, 3);
+                color: whitesmoke;
+                border: none;
+                border-radius: 5px;
+            }
+    
+            .btn:hover {
+                background-color: rgba(45, 37, 3, 0.475);
+                color: whitesmoke;
+                border: none;
+                transition: all 0.15s ease-in-out;
+                transform: scale(0.95, 0.95);
+            }
+            
+            .navbar-nav {
+                margin-left: 1rem;
+            }
+            
+            .form-inline {
+                margin-right: 1rem;
+            }
+
+            .navbar-nav.ml-auto {
+                margin-left: auto;
+                margin-right: 0;
+            }
+
+            .navbar-nav .nav-item {
+                white-space: nowrap;
+            }
+
+            footer .container {
+                margin-left: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="py-3">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-dark">
+                    <a class="navbar-brand" href="{% url 'home' %}"><i class="fas fa-coffee"></i> CoffeeBrew</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'coffee_list' %}"><i class="fas fa-mug-hot"></i> Coffees</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'food_list' %}"><i class="fas fa-utensils"></i> Foods</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'cart_detail' %}"><i class="fas fa-shopping-cart"></i> My Cart</a></li>
+                        </ul>
+                        
+                        <form class="form-inline my-2 my-lg-0 ml-auto" method="get" action="{% url 'search' %}">
+                            <div class="input-group" style="width: 100%;">
+                                <input class="form-control" type="search" name="query" placeholder="Search for coffee & food" aria-label="Search" style="width: calc(100% - 40px);">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-light" type="submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>                        
+        
+                        <ul class="navbar-nav ml-auto">
+                            {% if user.is_authenticated %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class="fas fa-user"></i> Hi, {{ user.username }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                                </li>
+                            {% else %}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'register' %}"><i class="fas fa-user"></i> Account</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>                
+        
+        <main class="container my-4">
+            {% block content %}
+            <div class="welcome-section">
+                <h1>Happiness is found in a Small cup of Coffee</h1>
+                <a href="{% url 'coffee_list' %}" class="btn btn-primary">View Coffees</a>
+                <a href="{% url 'food_list' %}" class="btn btn-secondary">View Foods</a>
+            </div>
+            {% endblock %}
+        </main>
+
+        <footer class="py-3">
+            <div class="container">
+                <p>&copy; 2024 Coffee Brew by Gargi.</p>
+            </div>
+            <div class="media-icons">
+                <a href="https://github.com/gargi-3" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/gargi-rout/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@2.5.3/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+</html>
