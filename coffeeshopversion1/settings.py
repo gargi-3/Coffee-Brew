@@ -21,10 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-cal#3p+rpj=t6if@*d8agxiocwo=3o4*oddkelub28%#7f-t+%'
+SECRET_KEY = ''    #Your secret key
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False    #Make it True
 
 ALLOWED_HOSTS = []
 
@@ -137,8 +137,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-RAZORPAY_TEST_KEY_ID = 'rzp_test_PxyqrQSnCXlZfO'
-RAZORPAY_TEST_KEY_SECRET = 'Bkis0kGCwrj42MFSOKlBxAni'
+RAZORPAY_TEST_KEY_ID = ''    #RazorPay Key ID
+RAZORPAY_TEST_KEY_SECRET = ''    #RazorPay Key Secret
 
 RAZORPAY_PAYMENT_SETTINGS = {
     'key_id': RAZORPAY_TEST_KEY_ID,
@@ -150,6 +150,6 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'gargi.zr25@gmail.com'
-EMAIL_HOST_PASSWORD = 'mkql pxcp icwm cbss' #App password
+EMAIL_HOST_USER = ''    #Your email id
+EMAIL_HOST_PASSWORD = '' #Your App password
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
